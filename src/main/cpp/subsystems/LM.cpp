@@ -11,8 +11,8 @@
 LM::LM() : 
     m_LimelightHasTarget(false)
 {
-    Kp = -0.1f;
-    min_command = 0.05f;
+    Kp = -0.03f;
+    min_command = 0.19f;
     table->PutNumber("ledMode", 0);
     table->PutNumber("pipeline", 0);
 }
@@ -43,8 +43,8 @@ void LM::Periodic() {
     else if (tx < 1.0)  {
       steering_adjust = Kp*heading_error + min_command;
     }
-    left_command = steering_adjust / 30.0f;
-    right_command = -steering_adjust / 30.0f;
+    left_command = steering_adjust;
+    right_command = -steering_adjust;
     printf("%f, %f\n", left_command, right_command);
   }
 
