@@ -28,7 +28,7 @@ DriveTrain::DriveTrain():
     .WithPosition (1,0);
 
     inf >> strInput;
-    printEvery = std::stod(strInput);
+    printEvery = std::stod(strInput) / spdMult;
 
     inf >> strInput;
     driveMode = std::stod(strInput);
@@ -64,9 +64,9 @@ void DriveTrain::tankDrive(){
 void DriveTrain::arcadeDrive(){
     if (counter == 0) {
         inf >> strInput;
-        speed = std::stod(strInput);
+        speed = std::stod(strInput) * sqrt(spdMult);
         inf >> strInput;
-        rotation = std::stod(strInput);
+        rotation = std::stod(strInput) * sqrt(spdMult);
     }
     counter = (counter + 1) % printEvery;
     if (!inverted) {
