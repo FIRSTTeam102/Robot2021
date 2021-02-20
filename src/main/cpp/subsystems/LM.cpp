@@ -20,14 +20,20 @@ LM::LM() :
 
 double LM::getShootSpeed() {
     return 0.5;
-    if (ty>=1) {
-        
+    if (ty>=22.29) {
+      return 0.42;
     }
-    else if (ty>=2) {
-
+    else if (ty>=16.00) {
+      return 0.39;
     }
-    else if (ty>=3) {
-
+    else if (ty>=14.08) {
+      return 0.39;
+    }
+    else if (ty>=10) {
+      return 0.41;
+    }
+    else if (ty>=9) {
+      return 0.425;
     }
     else {return 0;}
 }
