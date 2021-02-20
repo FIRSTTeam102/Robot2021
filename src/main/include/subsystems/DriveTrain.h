@@ -55,7 +55,7 @@ class DriveTrain : public frc2::SubsystemBase {
   bool inverted = false;
 
   std::ofstream outf{"/U/spdLog.txt"};
-  const int printEvery = 5;
+  const int printEvery = 2;
   int counter = 0;
 
 

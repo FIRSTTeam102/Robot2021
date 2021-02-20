@@ -19,7 +19,7 @@
  * they are needed.
  */
 
-//#define USEARCADE //Uncomment to use Arcade, comment to use Tank
+#define USEARCADE //Uncomment to use Arcade, comment to use Tank
 
 // Talon SRX motor controllers (CAN Bus)
 // Drive motor controllers
