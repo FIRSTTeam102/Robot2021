@@ -23,7 +23,7 @@ void LMShootSpeed::Execute() {
   rampUpSpeed += 0.02;
   mpShooter->setSpeed(rampUpSpeed * mpLM->getShootSpeed());
   mpShooter->startMotor();
-  printf("RAMP UP PERCENT: %f\n", rampUpSpeed);
+  printf("RAMP UP PERCENT: %f\n", rampUpSpeed * mpLM->getShootSpeed());
 }
 
 // Called once the command ends or is interrupted.

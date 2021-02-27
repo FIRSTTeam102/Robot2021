@@ -44,7 +44,7 @@
 #include "commands/MoveCameraServo.h"
 #include "commands/NextCamera.h"
 #include "commands/PreviousCamera.h"
-#include "commands/LMYawToTarget.h"
+#include "commands/AimLM.h"
 
 #include "commands/NextCamera.h"
 
@@ -131,7 +131,7 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
   LM mLM;
-  LMYawToTarget mLMYawToTarget{&mLM, &mTankDrive};
+  AimLM mAimLM{&mLM, &mShooter, &mTankDrive};
 
   cs::UsbCamera mCamera1;
   cs::UsbCamera mCamera2;
