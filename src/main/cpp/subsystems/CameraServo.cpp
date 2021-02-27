@@ -63,5 +63,5 @@ void CameraServo::controlServoWithJoystick()
     else {
         mCameraServoY.Set(currServoYPos - verticalPower );
     }
-    //printf("Position set to: (%f, %f)\n", cameraServoXPosition, cameraServoYPosition);
+    printf("Position set to: (%f, %f)\n", cameraServoXPosition, cameraServoYPosition);
 }
