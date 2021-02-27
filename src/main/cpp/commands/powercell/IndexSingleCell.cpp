@@ -5,42 +5,32 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/powercell/AimShooter.h"
+#include "commands/powercell/IndexSingleCell.h"
 
-AimShooter::AimShooter(Shooter* pShooter, float speed): mpShooter{pShooter}, mSpeed{speed} {
+IndexSingleCell::IndexSingleCell(Indexer* pIndexer) : mpIndexer{pIndexer} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(mpShooter);
+  AddRequirements(pIndexer);
 }
 
 // Called when the command is initially scheduled.
-void AimShooter::Initialize() {
-  rampUpSpeed = 0;
-  if (mSpeed > kSlowSpeed + 0.01) {
-    mpShooter->extServo();
-  }
-  else {
-    mpShooter->retrServo();
-  }
-  printf("Aiming shooter\n");
+void IndexSingleCell::Initialize() {
+  timer = 0;
+  mpIndexer->moveUpIndexer();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AimShooter::Execute() {
-  rampUpSpeed += 0.02;
-  mpShooter->setSpeed(rampUpSpeed * mSpeed);
-  //mpShooter->startMotor();
-  printf("RAMP UP PERCENT: %f\n", rampUpSpeed);
+void IndexSingleCell::Execute() {
+  timer++;
+  printf("Indexing single cell\n");
 }
 
 // Called once the command ends or is interrupted.
-void AimShooter::End(bool interrupted) {
-  if (interrupted) {
-    mpShooter->setSpeed(mSpeed);
-    //mpShooter->startMotor();
-  }
+void IndexSingleCell::End(bool interrupted) {
+  mpIndexer->stopIndexer();
+  mpIndexer->addPowerCell();
 }
 
 // Returns true when the command should end.
-bool AimShooter::IsFinished() {
-  return (rampUpSpeed >= 1);
+bool IndexSingleCell::IsFinished() { 
+  return (timer * 20.0 >= 500);
 }
