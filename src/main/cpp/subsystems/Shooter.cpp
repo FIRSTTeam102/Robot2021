@@ -11,7 +11,8 @@
 
 Shooter::Shooter() : 
     mShooter1{kFlyMotor1},
-    mShooter2{kFlyMotor2}
+    mShooter2{kFlyMotor2},
+    mServo{kHoodServo}
 {
     mShooter2.Set(ControlMode::Follower, kFlyMotor1);
     mShooter1.SetInverted(true);
@@ -23,7 +24,9 @@ Shooter::Shooter() :
 }
 
 // This method will be called once per scheduler run
-void Shooter::Periodic() {}
+void Shooter::Periodic() {
+    printf("Shooter should be: %d\n", mHoodIn);
+}
 
 void Shooter::setSpeed(float speed) {
     mSpeed = speed;
@@ -41,4 +44,15 @@ void Shooter::stopMotor() {
 
 bool Shooter::isRunning() {
     return mIsStarted;
+}
+
+void Shooter::toggleServo() {
+    if (mHoodIn) {
+        extServo();
+        mHoodIn = false;
+    }
+    else {
+        retrServo();
+        mHoodIn = true;
+    }
 }

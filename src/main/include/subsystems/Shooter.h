@@ -10,6 +10,8 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Encoder.h>
 #include <ctre/Phoenix.h>
+#include <frc/Servo.h>
+#include "Constants.h"
 
 class Shooter : public frc2::SubsystemBase {
  public:
@@ -18,6 +20,9 @@ class Shooter : public frc2::SubsystemBase {
   void startMotor();
   void stopMotor();
   bool isRunning();
+  void extServo() {mServo.Set(kOutHood); mHoodIn = 0;}
+  void retrServo() {mServo.Set(kInHood); mHoodIn = 1;}
+  void toggleServo();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -27,7 +32,9 @@ class Shooter : public frc2::SubsystemBase {
  private:
   WPI_TalonSRX mShooter1;
   WPI_TalonSRX mShooter2;
+  frc::Servo mServo;
   float mSpeed;
+  bool mHoodIn;
   bool mIsStarted;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
