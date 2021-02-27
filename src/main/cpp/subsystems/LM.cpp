@@ -19,23 +19,31 @@ LM::LM() :
 
 
 double LM::getShootSpeed() {
-    return 0.5;
+    //return 0.5;
     if (ty>=22.29) {
       return 0.42;
+      printf("Far\n");
     }
     else if (ty>=16.00) {
       return 0.39;
+      printf("Far med\n");
     }
     else if (ty>=14.08) {
       return 0.39;
+      printf("Close med\n");
     }
     else if (ty>=10) {
       return 0.41;
+      printf("Far close\n");
     }
     else if (ty>=9) {
       return 0.425;
+      printf("Close close\n");
     }
-    else {return 0;}
+    else {
+      printf("Super close\n");
+      return 1.0;
+    }
 }
 
 
