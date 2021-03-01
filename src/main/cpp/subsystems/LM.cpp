@@ -21,8 +21,8 @@ LM::LM() :
 double LM::getShootSpeed() {
     //return 0.5;
     if (ty>=22.29) {
-      return 0.42;
       printf("Far\n");
+      return 0.42;
     }
     else if (ty>=16.00) {
       return 0.39;
@@ -36,7 +36,7 @@ double LM::getShootSpeed() {
       return 0.41;
       printf("Far close\n");
     }
-    else if (ty>=9) {
+    else if (ty>=9) { //if this is changed, change isClose() in LM.h
       return 0.425;
       printf("Close close\n");
     }

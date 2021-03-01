@@ -15,7 +15,7 @@ AimShooter::AimShooter(Shooter* pShooter, float speed): mpShooter{pShooter}, mSp
 // Called when the command is initially scheduled.
 void AimShooter::Initialize() {
   rampUpSpeed = 0;
-  if (mSpeed > kSlowSpeed + 0.01) {
+  if (mSpeed != kFastSpeed) {
     mpShooter->extServo();
   }
   else {
@@ -28,7 +28,7 @@ void AimShooter::Initialize() {
 void AimShooter::Execute() {
   rampUpSpeed += 0.02;
   mpShooter->setSpeed(rampUpSpeed * mSpeed);
-  //mpShooter->startMotor();
+  mpShooter->startMotor();
   printf("RAMP UP PERCENT: %f\n", rampUpSpeed);
 }
 
@@ -36,7 +36,7 @@ void AimShooter::Execute() {
 void AimShooter::End(bool interrupted) {
   if (interrupted) {
     mpShooter->setSpeed(mSpeed);
-    //mpShooter->startMotor();
+    mpShooter->startMotor();
   }
 }
 

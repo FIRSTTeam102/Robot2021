@@ -18,6 +18,8 @@ class LM : public frc2::SubsystemBase {
   double getShootSpeed();
 
   bool limeLightHasTarget() {return m_LimelightHasTarget;}
+
+  bool isClose() {return (ty < 9);}
   
   float left_command;
   float right_command;

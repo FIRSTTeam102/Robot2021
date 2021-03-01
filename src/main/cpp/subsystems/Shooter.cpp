@@ -25,7 +25,7 @@ Shooter::Shooter() :
 
 // This method will be called once per scheduler run
 void Shooter::Periodic() {
-    printf("Shooter should be: %d\n", mHoodIn);
+    //printf("Shooter should be: %d\n", mHoodIn);
 }
 
 void Shooter::setSpeed(float speed) {

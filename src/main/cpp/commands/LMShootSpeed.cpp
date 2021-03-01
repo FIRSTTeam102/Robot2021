@@ -16,6 +16,12 @@ LMShootSpeed::LMShootSpeed(Shooter* pShooter, LM* pLM): mpShooter{pShooter}, mpL
 void LMShootSpeed::Initialize() {
   rampUpSpeed = 0;
   printf("Aiming shooter\n");
+  if (mpLM->isClose()) {
+    mpShooter->retrServo();
+  }
+  else {
+    mpShooter->extServo();
+  }
 }
 
 // Called repeatedly when this Command is scheduled to run

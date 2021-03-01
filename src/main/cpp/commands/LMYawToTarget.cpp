@@ -9,7 +9,7 @@
 
 LMYawToTarget::LMYawToTarget(LM* pLM, DriveTrain* pDriveTrain): mpLM{pLM}, mpDriveTrain{pDriveTrain} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pLM);
+  // AddRequirements(pLM);
   AddRequirements(pDriveTrain);
 }
 
