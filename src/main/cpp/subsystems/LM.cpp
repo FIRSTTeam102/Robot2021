@@ -68,13 +68,15 @@ void LM::Periodic() {
     heading_error = -tx;
     steering_adjust = 0.0f;
     if (tx > 1.0) {
-      steering_adjust = Kp*heading_error - min_command;
+      steering_adjust = 0.2;
+      //steering_adjust = Kp*heading_error - min_command;
     }
     else if (tx < 1.0)  {
-      steering_adjust = Kp*heading_error + min_command;
+      steering_adjust = -0.2;
+      //steering_adjust = Kp*heading_error + min_command;
     }
-    left_command = steering_adjust / 30.0f;
-    right_command = -steering_adjust / 30.0f;
+    left_command = steering_adjust;
+    right_command = -steering_adjust;
     printf("%f, %f\n", left_command, right_command);
   }
 
