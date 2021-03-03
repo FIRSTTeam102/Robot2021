@@ -12,6 +12,7 @@ ControlPanelManipulator::ControlPanelManipulator():
 	mControlMotor{kControlPanelMotor},
 	mColorSensor{frc::I2C::Port::kOnboard}
 {
+	frc::SmartDashboard::PutString("colorTarg", "G");
 	mControlMotor.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);
     turnCounter = 0;
 	previousColor = 0;

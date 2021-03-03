@@ -13,6 +13,7 @@
 #include <subsystems/DriveTrain.h>
 #include <frc/DriverStation.h>
 #include <subsystems/Lights.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 /**
  * An example command.
