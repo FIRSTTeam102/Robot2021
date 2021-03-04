@@ -61,7 +61,7 @@ class DriveTrain : public frc2::SubsystemBase {
   std::string strInput;
   int printEvery, driveMode;
   int counter = 0;
-  double spdMult = 2;
+  double spdMult = 1;
 
 
   // Components (e.g. motor controllers and sensors) should generally be
