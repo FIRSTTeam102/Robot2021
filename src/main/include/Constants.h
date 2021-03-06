@@ -18,8 +18,8 @@
 
 //motor controllers
 int constexpr kTopLeftMotor = 0;
-int constexpr kTopRightMotor = 1;
-int constexpr kBottomLeftMotor = 2;
+int constexpr kTopRightMotor = 2;
+int constexpr kBottomLeftMotor = 1;
 int constexpr kBottomRightMotor = 3;
 int constexpr kControlPanelMotor = 4;
 int constexpr kIndexerMotor = 8;
@@ -31,5 +31,5 @@ int constexpr kDriverJoystick = 0;
 int constexpr kOperatorJoystick = 1;
 
 //Analog Inputs
-int constexpr kAnalogLeft = 0;
+int constexpr kAnalogLeft = 2;
 int constexpr kAnalogRight = 1;

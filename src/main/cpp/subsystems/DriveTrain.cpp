@@ -25,6 +25,7 @@ DriveTrain::DriveTrain():
 void DriveTrain::Periodic() {
 
 
+    printf("Voltage: %f, %f\n", mAnalogLeft.GetVoltage(), mAnalogRight.GetVoltage());
 
 }
 
@@ -39,10 +40,9 @@ void DriveTrain::driveWithXboxController(){
 }
 
 void DriveTrain::driveWithPixy() {
-    double leftSpeed = (mAnalogLeft.GetVoltage() - 2.5) / 2.5;
-    double rightSpeed = (mAnalogRight.GetVoltage() - 2.5) / 2.5;
-    
-    mDrive.TankDrive(-leftSpeed, -rightSpeed, false);
+    double leftSpeed = (mAnalogLeft.GetVoltage() - 2.0) / 2.0;
+    double rightSpeed = (mAnalogRight.GetVoltage() - 2.0) / 2.0;
+    mDrive.TankDrive(leftSpeed/3, rightSpeed/3, false);
     printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
 
     if (mTopSensor.Get()) {
