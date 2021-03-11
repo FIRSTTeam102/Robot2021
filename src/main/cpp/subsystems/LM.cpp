@@ -20,25 +20,27 @@ LM::LM() :
 
 double LM::getShootSpeed() {
     //return 0.5;
-    if (ty>=22.29) {
-      printf("Far\n");
-      return 0.39;
+    //if (ty>=22.29) {
+    if (ty>=23.29) {
+      printf("Close close\n");
+      return 0.4;
     }
     else if (ty>=16.00) {
-      return 0.365;
-      printf("Far med\n");
+      printf("Far close\n");
+      return 0.475;
     }
-    else if (ty>=14.08) {
-      return 0.36;
+    //else if (ty>=14.08) {
+    else if (ty>=15.08) {
       printf("Close med\n");
+      return 0.36;
     }
     else if (ty>=10) {
-      return 0.475;
-      printf("Far close\n");
+      printf("Far med\n");
+      return 0.365;
     }
     else if (ty>=9) { //if this is changed, change isClose() in LM.h
-      return 0.4;
-      printf("Close close\n");
+      printf("Far\n");
+      return 0.39;
     }
     else {
       printf("Super close\n");
@@ -67,17 +69,17 @@ void LM::Periodic() {
   if (m_LimelightHasTarget == true)  {
     heading_error = -tx;
     steering_adjust = 0.0f;
-    if (tx > 1.0) {
+    if (tx > 0.0) {
       steering_adjust = 0.2;
       //steering_adjust = Kp*heading_error - min_command;
     }
-    else if (tx < 1.0)  {
+    else if (tx < 0.0)  {
       steering_adjust = -0.2;
       //steering_adjust = Kp*heading_error + min_command;
     }
     left_command = steering_adjust;
     right_command = -steering_adjust;
-    printf("%f, %f\n", left_command, right_command);
+    //printf("%f, %f\n", left_command, right_command);
   }
 
   if (tv < 1.0) {
