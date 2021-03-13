@@ -21,26 +21,26 @@ LM::LM() :
 double LM::getShootSpeed() {
     //return 0.5;
     //if (ty>=22.29) {
-    if (ty>=23.29) {
+    if (ty>=23.46) {
       printf("Close close\n");
       return 0.4;
     }
-    else if (ty>=16.00) {
+    else if (ty>=19.45) {
       printf("Far close\n");
-      return 0.475;
+      return 0.37;
     }
     //else if (ty>=14.08) {
-    else if (ty>=15.08) {
+    else if (ty>=15.42) {
       printf("Close med\n");
-      return 0.36;
+      return 0.375;
     }
-    else if (ty>=10) {
+    else if (ty>=12.65) {
       printf("Far med\n");
-      return 0.365;
+      return 0.385;
     }
     else if (ty>=9) { //if this is changed, change isClose() in LM.h
       printf("Far\n");
-      return 0.39;
+      return 0.4175;
     }
     else {
       printf("Super close\n");
@@ -51,7 +51,7 @@ double LM::getShootSpeed() {
 
 //This method will be called continuously until Limelight rotated to target
 bool LM::CheckR(){
-    if (-1.0 < tx && tx < 1.0)
+    if (-0.5 < tx && tx < 0.5)
     {
       return true;
     }

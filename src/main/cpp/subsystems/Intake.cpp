@@ -25,8 +25,9 @@ Intake::Intake():
 void Intake::lowerIntakeArm() {
     printf("Deploying intake\n");
     printf("Is arm down - %d\n", isArmDown());
-    if (!isArmDown()){
+    if (/*!isArmDown()*/ true){
       mIntakeArmMotor.Set(frc::Relay::kReverse);
+      //mIntakeArmMotor.Set(frc::Relay::kForward);
     }
     else {
       stopIntakeArm();
@@ -38,8 +39,9 @@ void Intake::lowerIntakeArm() {
 //  is not running.
 void Intake::raiseIntakeArm() {
     printf("Retracting intake\n");
-    if (!isArmUp()){
-      mIntakeArmMotor.Set(frc::Relay::kForward);
+    if (/*!isArmUp()*/ true){
+      //mIntakeArmMotor.Set(frc::Relay::kForward);
+      mIntakeArmMotor.Set(frc::Relay::kOff);
     }
     else {
         stopIntakeArm();
