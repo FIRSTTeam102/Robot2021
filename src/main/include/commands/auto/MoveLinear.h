@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <subsystems/DriveTrain.h>
+#include <math.h>
 /**
  * An example command.
  *
@@ -20,7 +21,7 @@
 class MoveLinear
     : public frc2::CommandHelper<frc2::CommandBase, MoveLinear> {
  public:
-  explicit MoveLinear(DriveTrain* driveTrain, int ticks, double speed);
+  explicit MoveLinear(DriveTrain* driveTrain, double target, double speed);
 
   void Initialize() override;
 
@@ -31,7 +32,7 @@ class MoveLinear
   bool IsFinished() override;
   private:
   DriveTrain* mpDriveTrain;
-  int ticksPassed;
-  int mTicks;
+  double mTarget;
+  int mTargetDegs;
   double mSpeed;
 };

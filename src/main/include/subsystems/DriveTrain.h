@@ -12,7 +12,7 @@
 #include <ctre/Phoenix.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/XboxController.h>
-
+#include <frc/Encoder.h>
 
 
 class DriveTrain : public frc2::SubsystemBase {
@@ -27,6 +27,8 @@ class DriveTrain : public frc2::SubsystemBase {
     mpDriverJoystick = pDriverJoystick;
   };
   bool flipDrive();
+  void resetEncs() { mLeftEnc.Reset(); }
+  int getLEncs() { mLeftEnc.Get(); }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -43,6 +45,8 @@ class DriveTrain : public frc2::SubsystemBase {
   WPI_TalonSRX mDriveLeft2;
   WPI_TalonSRX mDriveRight1;
   WPI_TalonSRX mDriveRight2;
+  
+  frc::Encoder mLeftEnc{8,9};
 
   frc::SpeedControllerGroup mLeft{mDriveLeft1, mDriveLeft2};
   frc::SpeedControllerGroup mRight{mDriveRight1, mDriveRight2};

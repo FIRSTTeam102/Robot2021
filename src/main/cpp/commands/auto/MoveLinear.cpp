@@ -7,19 +7,20 @@
 
 #include "commands/auto/MoveLinear.h"
 
-MoveLinear::MoveLinear(DriveTrain* pDriveTrain, int ticks, double speed): mpDriveTrain(pDriveTrain), mTicks(ticks), mSpeed(speed) {
+MoveLinear::MoveLinear(DriveTrain* pDriveTrain, double target, double speed): mpDriveTrain(pDriveTrain), mTarget(target), mSpeed(speed) {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(pDriveTrain);
-  ticksPassed = 0;
+  mTargetDegs = (int) (target*60/3.1415);
 }
 
 // Called when the command is initially scheduled.
-void MoveLinear::Initialize() {}
+void MoveLinear::Initialize() {
+  mpDriveTrain->resetEncs();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void MoveLinear::Execute() {
   mpDriveTrain->move(mSpeed, mSpeed);
-  ticksPassed += 1;
 }
 
 // Called once the command ends or is interrupted.
@@ -29,7 +30,7 @@ void MoveLinear::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool MoveLinear::IsFinished() { 
-  if(ticksPassed >= mTicks){
+  if(mpDriveTrain->getLEncs() >= mTargetDegs){
     return true;
   }
   return false; 
