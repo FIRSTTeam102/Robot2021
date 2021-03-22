@@ -9,16 +9,18 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
-#include "commands/auto/MoveLinear.h"
-#include "commands/auto/TurnDegrees.h"
-#include "commands/powercell/RaiseArm.h"
-#include "commands/powercell/LowerArm.h"
-#include "subsystems/DriveTrain.h"
-#include "subsystems/Intake.h"
-#include "subsystems/Indexer.h"
-class GetRascals //The balls are the rascals
+#include <frc/AnalogInput.h>
+#include <subsystems/DriveTrain.h>
+#include <commands/auto/TurnDegrees.h>
+#include <commands/auto/MoveLinear.h>
+
+class GalacticSearch
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
-                                 GetRascals> {
+                                 GalacticSearch> {
  public:
-  GetRascals(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer);
+  GalacticSearch(DriveTrain* pDriveTrain);
+ private:
+  frc::AnalogInput mChannelA{0};
+  frc::AnalogInput mChannelB{1};
+  double kSpd = 0.5;
 };

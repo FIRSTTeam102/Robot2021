@@ -28,7 +28,7 @@ class DriveTrain : public frc2::SubsystemBase {
   };
   bool flipDrive();
   void resetEncs() { mLeftEnc.Reset(); }
-  int getLEncs() { mLeftEnc.Get(); }
+  int getLEncs() { return mLeftEnc.Get(); }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.

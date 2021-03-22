@@ -40,7 +40,9 @@
 #include "commands/controlpanel/RotateControlPanel.h"
 #include "commands/controlpanel/PositionControlPanel.h"
 #include "commands/controlpanel/StopControlPanel.h"
-#include "commands/auto/AutonomousCode.h"
+#include "commands/auto/MoveLinear.h"
+#include "commands/auto/TurnDegrees.h"
+#include "commands/auto/GalacticSearch.h"
 #include "commands/MoveCameraServo.h"
 #include "commands/NextCamera.h"
 #include "commands/PreviousCamera.h"
@@ -130,6 +132,7 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
+  GalacticSearch mSearch{&mTankDrive};
 
   cs::UsbCamera mCamera1;
   cs::UsbCamera mCamera2;

@@ -9,8 +9,8 @@
 
 TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, double degrees, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mSpeed{speed} {
   // Use addRequirements() here to declare subsystem dependencies.
-  //Degrees positive for right, negative for left
-  mTarget = (int) (degrees/360*3.1415*23);
+  //Degrees positive for right (clockwise), negative for left (counterclockwise)
+  mTarget = (int) (degrees*23/6);
 }
 
 // Called when the command is initially scheduled.

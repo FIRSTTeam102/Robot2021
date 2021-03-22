@@ -30,8 +30,11 @@ void MoveLinear::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool MoveLinear::IsFinished() { 
-  if(mpDriveTrain->getLEncs() >= mTargetDegs){
+  if(mpDriveTrain->getLEncs() >= mTargetDegs && mTargetDegs > 0){
+    return true;
+  }
+  else if (mpDriveTrain->getLEncs() <= mTargetDegs) {
     return true;
   }
   return false; 
-  }
+}
