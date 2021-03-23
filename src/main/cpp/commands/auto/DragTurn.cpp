@@ -7,7 +7,7 @@
 
 #include "commands/auto/DragTurn.h"
 
-DragTurn::DragTurn(DriveTrain* pDriveTrain, double degrees, double radius, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mRadius{radius}, mSpeed{speed}  {
+DragTurn::DragTurn(DriveTrain* pDriveTrain, double degrees, double radius, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mRadius{radius+(23/2)}, mSpeed{speed}  {
   // Use addRequirements() here to declare subsystem dependencies.
   //Degrees positive for right (clockwise), negative for left (counterclockwise)
   mTarget = (int) (2*radius*(degrees/360)/6);
@@ -36,12 +36,27 @@ void DragTurn::End(bool interrupted) {
 // Returns true when the command should end.
 bool DragTurn::IsFinished() {
   if (mDegrees > 0) {
-    return (mpDriveTrain->getLEncs() <= mTarget);
+    if (mSpeed > 0) {
+      return (mpDriveTrain->getLEncs() <= mTarget);
+    }
+    else {
+      return (mpDriveTrain->getLEncs() >= -mTarget);
+    }
   }
   else if (mTarget > 0) {
-    return (mpDriveTrain->getLEncs() >= mTarget*(mRadius/(mRadius-23)));
+    if (mSpeed > 0) {
+      return (mpDriveTrain->getLEncs() >= mTarget*(mRadius/(mRadius-23)));
+    }
+    else {
+      return (mpDriveTrain->getLEncs() <= -mTarget*(mRadius/(mRadius-23)));
+    }
   }
   else {
-    return(mpDriveTrain->getLEncs() <= mTarget*(mRadius/(mRadius-23)));
+    if (mSpeed > 0) {
+      return(mpDriveTrain->getLEncs() <= mTarget*(mRadius/(mRadius-23)));
+    }
+    else {
+      return(mpDriveTrain->getLEncs() >= -mTarget*(mRadius/(mRadius-23)));
+    }
   }
 }

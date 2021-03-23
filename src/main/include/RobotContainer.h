@@ -43,6 +43,7 @@
 #include "commands/auto/MoveLinear.h"
 #include "commands/auto/TurnDegrees.h"
 #include "commands/auto/GalacticSearch.h"
+#include "commands/auto/AutoNav.h"
 #include "commands/MoveCameraServo.h"
 #include "commands/NextCamera.h"
 #include "commands/PreviousCamera.h"
@@ -133,6 +134,7 @@ class RobotContainer {
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
   GalacticSearch mSearch{&mTankDrive};
+  AutoNav mNav{&mTankDrive, 1};
 
   cs::UsbCamera mCamera1;
   cs::UsbCamera mCamera2;
