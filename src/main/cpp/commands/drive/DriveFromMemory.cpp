@@ -13,7 +13,10 @@ DriveFromMemory::DriveFromMemory(DriveTrain* pDriveTrain): mpDriveTrain{pDriveTr
 }
 
 // Called when the command is initially scheduled.
-void DriveFromMemory::Initialize() {}
+void DriveFromMemory::Initialize() {
+  mpDriveTrain->openRead();
+  mpDriveTrain->readHeader();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void DriveFromMemory::Execute() {
@@ -21,7 +24,10 @@ void DriveFromMemory::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void DriveFromMemory::End(bool interrupted) {}
+void DriveFromMemory::End(bool interrupted) {
+  mpDriveTrain->stop();
+  mpDriveTrain->fileClose();
+}
 
 // Returns true when the command should end.
 bool DriveFromMemory::IsFinished() { return false; }

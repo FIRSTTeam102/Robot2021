@@ -18,19 +18,26 @@ DriveWithXbox::DriveWithXbox(DriveTrain* pTankDrive): mpTankDrive(pTankDrive)
 }
 
 // Called when the command is initially scheduled.
-void DriveWithXbox::Initialize() {}
+void DriveWithXbox::Initialize() {
+  mpTankDrive->openWrite();
+  mpTankDrive->writeHeader();
+}
 
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithXbox::Execute() {
-
+#ifdef USEARCADE
   mpTankDrive->arcadeDrive();
-  //printf("running drive!");
-
+#else
+  mpTankDrive->tankDrive();
+#endif
 }
 
 // Called once the command ends or is interrupted.
-void DriveWithXbox::End(bool interrupted) {}
+void DriveWithXbox::End(bool interrupted) {
+  mpTankDrive->fileClose();
+  mpTankDrive->stop();
+}
 
 // Returns true when the command should end.
 bool DriveWithXbox::IsFinished() { return false; }

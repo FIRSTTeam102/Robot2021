@@ -27,25 +27,37 @@ DriveTrain::DriveTrain():
     .WithWidget(frc::BuiltInWidgets::kBooleanBox)
     .WithPosition (1,0);
 
-    inf >> strInput;
-    printEvery = std::stod(strInput);
-
-    inf >> strInput;
-    driveMode = std::stod(strInput);
 }
 
 // This method will be called once per scheduler run
 void DriveTrain::Periodic() {}
 
-void DriveTrain::tankDrive(){
-    
+void DriveTrain::readHeader() {
+    mFile >> strInput;
+    readEvery = std::stod(strInput);
+
+    mFile >> strInput;
+    driveMode = std::stod(strInput);
+}
+
+void DriveTrain::writeHeader() {
+    mFile << printEvery << " ";
+
+    #ifdef USEARCADE
+    mFile << "1\n";
+    #else
+    mFile << "0\n";
+    #endif
+}
+
+void DriveTrain::tankRead(){
     if (counter == 0) {
-        inf >> strInput;
+        mFile >> strInput;
         leftSpeed = std::stod(strInput);
-        inf >> strInput;
+        mFile >> strInput;
         rightSpeed = std::stod(strInput);
     }
-    counter = (counter + 1) % printEvery;
+    counter = (counter + 1) % readEvery;
     if (!inverted) {
         mDrive.TankDrive(-leftSpeed,-rightSpeed,true);
     }
@@ -55,14 +67,30 @@ void DriveTrain::tankDrive(){
     //printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
 }
 
-void DriveTrain::arcadeDrive(){
+void DriveTrain::tankDrive(){
+    double leftSpeed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rightSpeed = mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
+    if (!inverted) {
+        mDrive.TankDrive(-leftSpeed,-rightSpeed,true);
+    }
+    else {
+        mDrive.TankDrive(rightSpeed, leftSpeed, true);
+    }
+    //printf("Driving: %f, %f\n", leftSpeed, rightSpeed);
     if (counter == 0) {
-        inf >> strInput;
-        speed = std::stod(strInput);
-        inf >> strInput;
-        rotation = std::stod(strInput);
+        mFile << leftSpeed << " " << rightSpeed << "\n";
     }
     counter = (counter + 1) % printEvery;
+}
+
+void DriveTrain::arcadeRead(){
+    if (counter == 0) {
+        mFile >> strInput;
+        speed = std::stod(strInput);
+        mFile >> strInput;
+        rotation = std::stod(strInput);
+    }
+    counter = (counter + 1) % readEvery;
     if (!inverted) {
         mDrive.ArcadeDrive(-speed, rotation, true);
     }
@@ -71,12 +99,27 @@ void DriveTrain::arcadeDrive(){
     }
 }
 
-void DriveTrain::driveFromMemory(){
-    if (driveMode == 0) {
-        tankDrive();
+void DriveTrain::arcadeDrive(){
+    double speed = 0.70 * mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rotation = 0.70 * mpDriverJoystick->GetRawAxis(4); //Cap: 697rpm
+    if (!inverted) {
+        mDrive.ArcadeDrive(-speed, rotation, true);
     }
     else {
-        arcadeDrive();
+        mDrive.ArcadeDrive(speed, rotation, true);
+    }
+    if (counter == 0) {
+        mFile << speed << " " << rotation << "\n";
+    }
+    counter = (counter + 1) % printEvery;
+}
+
+void DriveTrain::driveFromMemory(){
+    if (driveMode == 0) {
+        tankRead();
+    }
+    else {
+        arcadeRead();
     }
 }
 

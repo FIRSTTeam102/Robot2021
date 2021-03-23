@@ -12,21 +12,28 @@
 #include <ctre/Phoenix.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/XboxController.h>
+#include "Constants.h"
 #include <fstream>
-
 
 class DriveTrain : public frc2::SubsystemBase {
  public:
   DriveTrain();
   void stop();
   void move(double left, double right);
+  void tankRead();
   void tankDrive();
+  void arcadeRead();
   void arcadeDrive();
   void driveFromMemory();
   void toggleDrive();
   void setDriverJoystick(frc::XboxController* pDriverJoystick){
     mpDriverJoystick = pDriverJoystick;
   };
+  void openRead() { mFile.open("/U/spdLog.txt", std::ios::in); }
+  void readHeader();
+  void openWrite() { mFile.open("/U/spdLog.txt", std::ios::out); }
+  void writeHeader();
+  void fileClose() { mFile.close(); };
   bool flipDrive();
 
   /**
@@ -55,9 +62,10 @@ class DriveTrain : public frc2::SubsystemBase {
 
   double leftSpeed, rightSpeed, speed, rotation;
 
-  std::ifstream inf{"/U/spdLog.txt"};
+  std::fstream mFile;
   std::string strInput;
-  int printEvery, driveMode;
+  int readEvery, driveMode;
+  const int printEvery = 5;
   int counter = 0;
 
 
