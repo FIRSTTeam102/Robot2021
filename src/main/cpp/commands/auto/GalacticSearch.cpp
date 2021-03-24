@@ -10,9 +10,10 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain) {
+GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
+  AddCommands(LowerArm(pIntake, pIndexer), RaiseArm(pIntake, pIndexer));
   if (mChannelA.GetVoltage() > 2.5) { //Path A
     if (mChannelB.GetVoltage() > 2.5) { //Red
     //Setup: Inline from C3-D5 (on B1)

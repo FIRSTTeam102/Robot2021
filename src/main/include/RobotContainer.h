@@ -133,7 +133,7 @@ class RobotContainer {
   StopControlPanel mStopPanelCommand{&mControlPanel, &mTankDrive};
   ManualControlPanel mManualPanelCommand{&mControlPanel};
 
-  GalacticSearch mSearch{&mTankDrive};
+  GalacticSearch mSearch{&mTankDrive, &mIntake, &mIndexer};
   AutoNav mNav{&mTankDrive, 1};
 
   cs::UsbCamera mCamera1;

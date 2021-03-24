@@ -69,6 +69,6 @@ void RobotContainer::ConfigureButtonBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand(int slot, bool shoot, int move, bool shoot2) {
   // An example command will be run in autonomous
-  return new GalacticSearch(&mTankDrive);
+  return new GalacticSearch(&mTankDrive, &mIntake, &mIndexer);
   //return new AutoNav(&mTankDrive, 1);
 }

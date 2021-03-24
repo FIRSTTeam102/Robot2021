@@ -18,14 +18,16 @@ RaiseArm::RaiseArm(Intake* pIntake, Indexer* pIndexer): mpIntake{pIntake}, mpInd
 // RaiseArm Initialize: Called when the command is initially scheduled.
 //   stop the intake arm rollers and start to raise the intake arm
 void RaiseArm::Initialize() {
-  mpIntake->stopRollers();
-  mpIndexer->disable();
+  //mpIntake->stopRollers();
+  //mpIndexer->disable();
+  counter = 0;
 }
   
 // RaiseArm Execute: Called repeatedly when this Command is scheduled to run
 //   continue to raise the intake arm until it reaches the fully raised position
 void RaiseArm::Execute() {
   mpIntake->raiseIntakeArm();
+  counter++;
 }
 
 // RaiseArm: Called once the command ends or is interrupted.
@@ -38,5 +40,5 @@ void RaiseArm::End(bool interrupted) {
 
 // RaiseArm IsFinished - Returns true when the command should end.
 bool RaiseArm::IsFinished() { 
-  return (mpIntake->isArmUp()); 
+  return (counter > 500 / 20); 
 }
