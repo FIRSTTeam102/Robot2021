@@ -14,13 +14,22 @@ AutoNav::AutoNav(DriveTrain* pDriveTrain, int path) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   if (path == 1) { //Start on C1
-    AddCommands(MoveLinear(pDriveTrain, 10*12, kSpd), DragTurn(pDriveTrain, 360, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd), DragTurn(pDriveTrain, -315, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 14.1*12.0, kSpd), DragTurn(pDriveTrain, -225, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 22.5*12.0, kSpd));
+    AddCommands(MoveLinear(pDriveTrain, 10*12, kSpd), //At Barrel 1
+    DragTurn(pDriveTrain, 360, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd), //At Barrel 2
+    DragTurn(pDriveTrain, -315, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 14.1*12.0, kSpd), //At Barrel 3
+    DragTurn(pDriveTrain, -225, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 22.5*12.0, kSpd)); //Finish
   }
   else if (path == 2) { //Start on F1
-    AddCommands(DragTurn(pDriveTrain, -45, 2.92*12.0, kSpd), DragTurn(pDriveTrain, 90, 10.6*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, -270, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 10.6*12.0, kSpd), DragTurn(pDriveTrain, -45, 2.92*12.0, kSpd));
+    AddCommands(DragTurn(pDriveTrain, -45, 2.92*12.0, kSpd), //At D3, 45 degree
+    DragTurn(pDriveTrain, 90, 10.6*12.0, kSpd), //Long curve 1
+    MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, -270, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), //Circle D10
+    DragTurn(pDriveTrain, 90, 10.6*12.0, kSpd), DragTurn(pDriveTrain, -45, 2.92*12.0, kSpd)); //Long curve and return
   }
   else if (path == 3) { //Start on C1
-    AddCommands(MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, -2.5*12.0, -kSpd), DragTurn(pDriveTrain, 30, 2.5*12.0, -kSpd), MoveLinear(pDriveTrain, -3.6*12.0, -kSpd), DragTurn(pDriveTrain, 150, 2.5*12.0, -kSpd), MoveLinear(pDriveTrain, -7.5*12.0, -kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 5*12, -kSpd));
+    AddCommands(MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), //Marker 1
+    MoveLinear(pDriveTrain, -2.5*12.0, -kSpd), DragTurn(pDriveTrain, 30, 2.5*12.0, -kSpd), MoveLinear(pDriveTrain, -3.6*12.0, -kSpd), DragTurn(pDriveTrain, 150, 2.5*12.0, -kSpd), MoveLinear(pDriveTrain, -7.5*12.0, -kSpd), //Marker 2
+    MoveLinear(pDriveTrain, 7.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd), //Marker 3
+    DragTurn(pDriveTrain, 90, 5*12, -kSpd));
   }
   else if (path == 0) { //Test functions
     AddCommands(MoveLinear(pDriveTrain, 2.5*12.0, kSpd), TurnDegrees(pDriveTrain, 180, kSpd));
