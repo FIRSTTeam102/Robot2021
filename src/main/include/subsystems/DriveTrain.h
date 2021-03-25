@@ -27,8 +27,9 @@ class DriveTrain : public frc2::SubsystemBase {
     mpDriverJoystick = pDriverJoystick;
   };
   bool flipDrive();
-  void resetEncs() { mLeftEnc.Reset(); }
+  void resetEncs() { mLeftEnc.Reset(); mRightEnc.Reset(); }
   int getLEncs() { return mLeftEnc.Get(); }
+  int getREncs() { return mRightEnc.Get(); }
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -47,6 +48,7 @@ class DriveTrain : public frc2::SubsystemBase {
   WPI_TalonSRX mDriveRight2;
   
   frc::Encoder mLeftEnc{8,9};
+  frc::Encoder mRightEnc{7,6};
 
   frc::SpeedControllerGroup mLeft{mDriveLeft1, mDriveLeft2};
   frc::SpeedControllerGroup mRight{mDriveRight1, mDriveRight2};

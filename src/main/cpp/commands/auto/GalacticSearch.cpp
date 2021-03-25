@@ -32,7 +32,7 @@ GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
   else { //Path B
     if (mChannelB.GetVoltage() > 2.5) { //Red
     //Setup: On (A-side wall)1, inline with B3-D5
-      AddCommands(MoveLinear(pDriveTrain, 14.14*12.0, kSpd), //Ball 1-2
+      AddCommands(MoveLinear(pDriveTrain, 12.4*12.0, kSpd), //Ball 1-2
       TurnDegrees(pDriveTrain, -90, kSpd), MoveLinear(pDriveTrain, 7.07*12.0, kSpd), //Ball 3
       TurnDegrees(pDriveTrain, 45, kSpd), MoveLinear(pDriveTrain, 12.5*12.0, kSpd)); //Finish
     }

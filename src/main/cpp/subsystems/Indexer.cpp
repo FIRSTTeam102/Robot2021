@@ -125,10 +125,10 @@ bool Indexer::isPowerCellAtBottom(){
 
 // This method will be called once per scheduler run
 void Indexer::Periodic() {
-    if (rawPowerCellAtBottom()) {
+    /*if (rawPowerCellAtBottom()) {
         mPowerCellWasAtBottom = true;
         mIndexTimer.Reset();
-        printf("RESETTING TIMER\n");
+        //printf("RESETTING TIMER\n");
         mIndexTimer.Start();
     }
     /*if (mPowerCellWasAtBottom && mIndexTimer.Get() < 2) { //Max 2 seconds
@@ -140,7 +140,7 @@ void Indexer::Periodic() {
     }*/
     //printf("Intake: %d          Bottom flipped: %d             Top flipped: %d\n", mIntakeSensor.Get(), mBottomSensor.Get(), mTopSensor.Get());
     //printf("Timer: %f\n", mIndexTimer.Get());
-    frc::SmartDashboard::PutBoolean("Intake Sensor", mIntakeSensor.Get());
+    /*frc::SmartDashboard::PutBoolean("Intake Sensor", mIntakeSensor.Get());
     frc::SmartDashboard::PutBoolean("Index Top Sensor", mTopSensor.Get());
-    frc::SmartDashboard::PutBoolean("Index Bot Sensor", mBottomSensor.Get());
+    frc::SmartDashboard::PutBoolean("Index Bot Sensor", mBottomSensor.Get());*/
 }

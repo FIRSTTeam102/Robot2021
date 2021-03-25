@@ -30,7 +30,9 @@ DriveTrain::DriveTrain():
 }
 
 // This method will be called once per scheduler run
-void DriveTrain::Periodic() {}
+void DriveTrain::Periodic() {
+    printf("%d\n", mRightEnc.Get());
+}
 
 void DriveTrain::tankDrive(){
     
@@ -57,6 +59,7 @@ void DriveTrain::arcadeDrive(){
 }
 
 void DriveTrain::stop(){
+    printf("STOP\n");
     mDrive.TankDrive(0, 0, false);
 }
 

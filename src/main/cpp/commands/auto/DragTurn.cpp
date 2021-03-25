@@ -10,7 +10,8 @@
 DragTurn::DragTurn(DriveTrain* pDriveTrain, double degrees, double radius, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mRadius{radius+(23/2)}, mSpeed{speed}  {
   // Use addRequirements() here to declare subsystem dependencies.
   //Degrees positive for right (clockwise), negative for left (counterclockwise)
-  mTarget = (int) (2*radius*(degrees/360)/6);
+  mTarget = (int) (2.0*radius*degrees/6.0);
+  printf("Drag Targ: %d", mTarget);
 }
 
 // Called when the command is initially scheduled.
@@ -20,6 +21,7 @@ void DragTurn::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DragTurn::Execute() {
+  printf("Drag Targ: %d", mTarget);
   if (mDegrees > 0) {
     mpDriveTrain->move(mSpeed, mSpeed*(mRadius/(mRadius-23)));
   }
@@ -35,28 +37,28 @@ void DragTurn::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool DragTurn::IsFinished() {
-  if (mDegrees > 0) {
+  if (mDegrees < 0) {
     if (mSpeed > 0) {
-      return (mpDriveTrain->getLEncs() <= mTarget);
+      return (mpDriveTrain->getREncs() <= mTarget);
     }
     else {
-      return (mpDriveTrain->getLEncs() >= -mTarget);
+      return (mpDriveTrain->getREncs() >= -mTarget);
     }
   }
   else if (mTarget > 0) {
     if (mSpeed > 0) {
-      return (mpDriveTrain->getLEncs() >= mTarget*(mRadius/(mRadius-23)));
+      return (mpDriveTrain->getREncs() >= mTarget*(mRadius/(mRadius-23)));
     }
     else {
-      return (mpDriveTrain->getLEncs() <= -mTarget*(mRadius/(mRadius-23)));
+      return (mpDriveTrain->getREncs() <= -mTarget*(mRadius/(mRadius-23)));
     }
   }
   else {
     if (mSpeed > 0) {
-      return(mpDriveTrain->getLEncs() <= mTarget*(mRadius/(mRadius-23)));
+      return(mpDriveTrain->getREncs() <= mTarget*(mRadius/(mRadius-23)));
     }
     else {
-      return(mpDriveTrain->getLEncs() >= -mTarget*(mRadius/(mRadius-23)));
+      return(mpDriveTrain->getREncs() >= -mTarget*(mRadius/(mRadius-23)));
     }
   }
 }

@@ -13,6 +13,7 @@
 AutoNav::AutoNav(DriveTrain* pDriveTrain, int path) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
+  printf("Moving\n");
   if (path == 1) { //Start on C1
     AddCommands(MoveLinear(pDriveTrain, 10*12, kSpd), //At Barrel 1
     DragTurn(pDriveTrain, 360, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd), //At Barrel 2
@@ -32,7 +33,8 @@ AutoNav::AutoNav(DriveTrain* pDriveTrain, int path) {
     DragTurn(pDriveTrain, 90, 5*12, -kSpd));
   }
   else if (path == 0) { //Test functions
-    AddCommands(MoveLinear(pDriveTrain, 2.5*12.0, kSpd), TurnDegrees(pDriveTrain, 180, kSpd));
+    printf("hehe\n");
+    AddCommands(/*MoveLinear(pDriveTrain, 2.5*12.0, kSpd),*/ TurnDegrees(pDriveTrain, -90, kSpd)/*, DragTurn(pDriveTrain, 90, 5*12, kSpd)*/);
   }
   else {
     printf("Invalid path\n");

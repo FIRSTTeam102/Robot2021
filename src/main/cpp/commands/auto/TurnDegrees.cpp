@@ -10,7 +10,8 @@
 TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, double degrees, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mSpeed{speed} {
   // Use addRequirements() here to declare subsystem dependencies.
   //Degrees positive for right (clockwise), negative for left (counterclockwise)
-  mTarget = (int) (degrees*23/6);
+  mTarget = (int) (degrees*23/6.0);
+  printf("Target: %d\n", mTarget);
 }
 
 // Called when the command is initially scheduled.
@@ -20,6 +21,7 @@ void TurnDegrees::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TurnDegrees::Execute() {
+  printf("Target: %d\n", mTarget);
   if (mDegrees > 0) {
     mpDriveTrain->move(mSpeed, -mSpeed);
   }
@@ -36,9 +38,9 @@ void TurnDegrees::End(bool interrupted) {
 // Returns true when the command should end.
 bool TurnDegrees::IsFinished() {
   if (mDegrees > 0) {
-    return (mpDriveTrain->getLEncs() <= mTarget);
+    return (mpDriveTrain->getREncs() <= -mTarget);
   }
   else {
-    return (mpDriveTrain->getLEncs() >= mTarget);
+    return (mpDriveTrain->getREncs() >= -mTarget);
   }
 }
