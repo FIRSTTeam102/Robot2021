@@ -25,7 +25,7 @@ void RotateControlPanel::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void RotateControlPanel::Execute() {
   mpControlPanel->rotationControl();
-  mpSubsystemDrive->move(0.1, 0.1);
+  mpSubsystemDrive->move(0.15, 0.15);
   printf("Running Rot\n");
 }
 

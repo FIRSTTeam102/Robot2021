@@ -19,10 +19,10 @@ void SlowTurn::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void SlowTurn::Execute() {
   if (mClockwise) {
-    mpDriveTrain->move(0.2, -0.2);
+    mpDriveTrain->move(0.4, -0.4);
   }
   else {
-    mpDriveTrain->move(-0.2, 0.2);
+    mpDriveTrain->move(-0.4, 0.4);
   }}
 
 // Called once the command ends or is interrupted.
