@@ -5,32 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/drive/DriveWithXbox.h"
-#include "subsystems/DriveTrain.h"
-#include "RobotContainer.h"
-#include "Robot.h"
+#include "commands/auto/Delay.h"
 
-DriveWithXbox::DriveWithXbox(DriveTrain* pTankDrive): mpTankDrive(pTankDrive)
- {
+Delay::Delay(double targ): mTarg{targ} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(pTankDrive);
-
 }
 
 // Called when the command is initially scheduled.
-void DriveWithXbox::Initialize() {}
-
-
-// Called repeatedly when this Command is scheduled to run
-void DriveWithXbox::Execute() {
-
-  mpTankDrive->tankDrive();
-  //printf("running drive!");
-
+void Delay::Initialize() {
+  mTimer.Reset();
+  mTimer.Start();
 }
 
+// Called repeatedly when this Command is scheduled to run
+void Delay::Execute() {}
+
 // Called once the command ends or is interrupted.
-void DriveWithXbox::End(bool interrupted) {}
+void Delay::End(bool interrupted) {
+  mTimer.Stop();
+}
 
 // Returns true when the command should end.
-bool DriveWithXbox::IsFinished() { return false; }
+bool Delay::IsFinished() { return mTimer.Get() > mTarg; }

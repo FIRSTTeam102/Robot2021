@@ -9,7 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/DriveTrain.h"
+#include <frc/Timer.h>
 
 /**
  * An example command.
@@ -18,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DragTurn
-    : public frc2::CommandHelper<frc2::CommandBase, DragTurn> {
+class Delay
+    : public frc2::CommandHelper<frc2::CommandBase, Delay> {
  public:
-  DragTurn(DriveTrain* pDriveTrain, double degrees, double radius, double speed);
+  Delay(double targ);
 
   void Initialize() override;
 
@@ -31,10 +31,6 @@ class DragTurn
 
   bool IsFinished() override;
  private:
-  double mDegrees;
-  double mRadius;
-  double mSpeed;
-  int mTarget;
-  DriveTrain* mpDriveTrain;
-  double slowMult;
+  double mTarg;
+  frc::Timer mTimer;
 };

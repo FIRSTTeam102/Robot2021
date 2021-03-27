@@ -10,8 +10,10 @@
 DragTurn::DragTurn(DriveTrain* pDriveTrain, double degrees, double radius, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mRadius{radius+(23/2)}, mSpeed{speed}  {
   // Use addRequirements() here to declare subsystem dependencies.
   //Degrees positive for right (clockwise), negative for left (counterclockwise)
-  mTarget = (int) (2.0*radius*degrees/6.0);
+  AddRequirements(pDriveTrain);
+  mTarget = (int) fabs((2.0*(radius+11.5)*degrees/6.0));
   printf("Drag Targ: %d", mTarget);
+  slowMult = ((mRadius-11.5)-23)/(mRadius-11.5);
 }
 
 // Called when the command is initially scheduled.
@@ -23,10 +25,10 @@ void DragTurn::Initialize() {
 void DragTurn::Execute() {
   printf("Drag Targ: %d", mTarget);
   if (mDegrees > 0) {
-    mpDriveTrain->move(mSpeed, mSpeed*(mRadius/(mRadius-23)));
+    mpDriveTrain->move(mSpeed, mSpeed*slowMult);
   }
   else {
-    mpDriveTrain->move(mSpeed*(mRadius/(mRadius-23)), mSpeed);
+    mpDriveTrain->move(mSpeed*slowMult, mSpeed);
   }
 }
 
@@ -39,26 +41,27 @@ void DragTurn::End(bool interrupted) {
 bool DragTurn::IsFinished() {
   if (mDegrees < 0) {
     if (mSpeed > 0) {
-      return (mpDriveTrain->getREncs() <= mTarget);
+      return (mpDriveTrain->getREncs() >= mTarget);
     }
     else {
-      return (mpDriveTrain->getREncs() >= -mTarget);
+      return (mpDriveTrain->getREncs() <= -mTarget);
     }
   }
-  else if (mTarget > 0) {
+  else if (mRadius < 23) {
     if (mSpeed > 0) {
-      return (mpDriveTrain->getREncs() >= mTarget*(mRadius/(mRadius-23)));
+      return (mpDriveTrain->getREncs() <= -mTarget*slowMult);
     }
     else {
-      return (mpDriveTrain->getREncs() <= -mTarget*(mRadius/(mRadius-23)));
+      return (mpDriveTrain->getREncs() >= mTarget*slowMult);
     }
   }
   else {
     if (mSpeed > 0) {
-      return(mpDriveTrain->getREncs() <= mTarget*(mRadius/(mRadius-23)));
+      return(mpDriveTrain->getREncs() >= mTarget*slowMult*2.1);
     }
     else {
-      return(mpDriveTrain->getREncs() >= -mTarget*(mRadius/(mRadius-23)));
+      return(mpDriveTrain->getREncs() <= -mTarget*slowMult);
     }
   }
+  return false;
 }

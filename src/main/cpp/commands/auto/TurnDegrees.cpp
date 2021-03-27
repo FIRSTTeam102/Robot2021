@@ -10,7 +10,8 @@
 TurnDegrees::TurnDegrees(DriveTrain* pDriveTrain, double degrees, double speed): mpDriveTrain{pDriveTrain}, mDegrees{degrees}, mSpeed{speed} {
   // Use addRequirements() here to declare subsystem dependencies.
   //Degrees positive for right (clockwise), negative for left (counterclockwise)
-  mTarget = (int) (degrees*23/6.0);
+  AddRequirements(pDriveTrain);
+  mTarget = (int) (degrees*23.0/6.0);
   printf("Target: %d\n", mTarget);
 }
 
