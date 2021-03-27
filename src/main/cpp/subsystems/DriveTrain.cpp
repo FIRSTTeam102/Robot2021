@@ -33,9 +33,14 @@ DriveTrain::DriveTrain():
 void DriveTrain::Periodic() {}
 
 void DriveTrain::tankDrive(){
-    
-    double leftSpeed = mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
-    double rightSpeed = mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
+    double speedPercent;
+    if (mpDriverJoystick->GetBumper(frc::GenericHID::JoystickHand::kLeftHand)) { // LB
+        speedPercent = 1.00; // Turbo pressed
+    } else {
+        speedPercent = 0.85; // Normal
+    }
+    double leftSpeed = speedPercent * mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rightSpeed = speedPercent * mpDriverJoystick->GetRawAxis(5); //Cap: 697rpm
     if (!inverted) {
         mDrive.TankDrive(-leftSpeed,-rightSpeed,true);
     }
@@ -46,8 +51,20 @@ void DriveTrain::tankDrive(){
 }
 
 void DriveTrain::arcadeDrive(){
-    double speed = 0.85 * mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
-    double rotation = 0.74 * mpDriverJoystick->GetRawAxis(4); //Cap: 697rpm
+    double speedPercent;
+    double rotationPercent;
+    if (mpDriverJoystick->GetBumper(frc::GenericHID::JoystickHand::kLeftHand)) { // LB
+        speedPercent = 1.00; // Turbo pressed
+    } else {
+        speedPercent = 0.85; // Normal
+    }
+    if (mpDriverJoystick->GetBumper(frc::GenericHID::JoystickHand::kRightHand)) { // RB
+        rotationPercent = 0.74; // Turbo pressed
+    } else {
+        rotationPercent = 0.74; // Normal
+    }
+    double speed = speedPercent * mpDriverJoystick->GetRawAxis(1); //Cap: 690rpm
+    double rotation = rotationPercent * mpDriverJoystick->GetRawAxis(4); //Cap: 697rpm
     if (!inverted) {
         mDrive.ArcadeDrive(-speed, rotation, true);
     }
