@@ -14,6 +14,7 @@
 #include <subsystems/Intake.h>
 #include <subsystems/Indexer.h>
 #include <commands/auto/TurnDegrees.h>
+#include <commands/auto/DragTurn.h>
 #include <commands/auto/MoveLinear.h>
 #include <commands/auto/Delay.h>
 #include <commands/powercell/LowerArm.h>
@@ -25,7 +26,7 @@ class GalacticSearch
  public:
   GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer);
  private:
-  frc::AnalogInput mChannelA{2};
-  frc::AnalogInput mChannelB{1};
-  double kSpd = 0.5;
+  //frc::AnalogInput mChannelA{2};
+  //frc::AnalogInput mChannelB{1};
+  double kSpd = 0.9;
 };

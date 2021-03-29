@@ -45,5 +45,5 @@ void LowerArm::End(bool interrupted) {
 //   when the button is released, the command will be cancelled, this
 //   command is not expected to finish on it's own.
 bool LowerArm::IsFinished() {
-   return (counter > 500 / 20);
+   return (counter > 200 / 20);
 }

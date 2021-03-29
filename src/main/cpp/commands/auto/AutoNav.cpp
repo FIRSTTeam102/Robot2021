@@ -34,7 +34,7 @@ AutoNav::AutoNav(DriveTrain* pDriveTrain, int path) {
   }
   else if (path == 0) { //Test functions
     printf("hehe\n");
-    AddCommands(/*MoveLinear(pDriveTrain, 2.5*12.0, kSpd),*/ TurnDegrees(pDriveTrain, -90, kSpd), TurnDegrees(pDriveTrain, 90, kSpd) /*DragTurn(pDriveTrain, -360.0, 2.5*12.0, kSpd)*/);
+    AddCommands(/*MoveLinear(pDriveTrain, 2.5*12.0, kSpd),*/ TurnDegrees(pDriveTrain, -90, kSpd), TurnDegrees(pDriveTrain, 45, kSpd) /*DragTurn(pDriveTrain, -360.0, 2.5*12.0, kSpd)*/);
   }
   else {
     printf("Invalid path\n");

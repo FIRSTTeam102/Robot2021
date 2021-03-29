@@ -13,6 +13,7 @@
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/XboxController.h>
 #include <frc/Encoder.h>
+#include <frc/AnalogInput.h>
 
 
 class DriveTrain : public frc2::SubsystemBase {
@@ -30,6 +31,9 @@ class DriveTrain : public frc2::SubsystemBase {
   void resetEncs() { mLeftEnc.Reset(); mRightEnc.Reset(); }
   int getLEncs() { return mLeftEnc.Get(); }
   int getREncs() { return mRightEnc.Get(); }
+  double geVoltA() { return mInputA.GetVoltage(); }
+  double geVoltB() { return mInputB.GetVoltage(); }
+
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -49,6 +53,9 @@ class DriveTrain : public frc2::SubsystemBase {
   
   frc::Encoder mLeftEnc{8,9};
   frc::Encoder mRightEnc{7,6};
+
+  frc::AnalogInput mInputA{2};
+  frc::AnalogInput mInputB{1};
 
   frc::SpeedControllerGroup mLeft{mDriveLeft1, mDriveLeft2};
   frc::SpeedControllerGroup mRight{mDriveRight1, mDriveRight2};

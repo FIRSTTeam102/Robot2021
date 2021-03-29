@@ -43,7 +43,7 @@ double constexpr kTakeUpSlackPercent = 0.3;
 int constexpr kIntakeMotor = 0;
 //int constexpr kIntakeRollerMotor = 1;
 int constexpr kIntakeRollerMotor = 7;
-double constexpr kIntakeRollerSpeed = 0.5;
+double constexpr kIntakeRollerSpeed = 0.75;
 
 //Index Relay (SpikeRelay)
 //int constexpr kIndexChannel = 2;
