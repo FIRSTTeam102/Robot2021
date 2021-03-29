@@ -26,7 +26,7 @@ void MoveLinear::Execute() {
 
 // Called once the command ends or is interrupted.
 void MoveLinear::End(bool interrupted) {
-  mpDriveTrain->move(0, 0);
+  mpDriveTrain->stop();
   printf("Finished move\n");
 }
 

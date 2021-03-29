@@ -9,6 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <subsystems/DriveTrain.h>
 #include <frc/Timer.h>
 
 /**
@@ -21,7 +22,7 @@
 class Delay
     : public frc2::CommandHelper<frc2::CommandBase, Delay> {
  public:
-  Delay(double targ);
+  Delay(DriveTrain* pDriveTrain, double targ);
 
   void Initialize() override;
 
@@ -33,4 +34,5 @@ class Delay
  private:
   double mTarg;
   frc::Timer mTimer;
+  DriveTrain* mpDriveTrain;
 };

@@ -14,13 +14,14 @@ GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(LowerArm(pIntake, pIndexer), RaiseArm(pIntake, pIndexer));
+  printf("A: %f, B: %f\n", mChannelA.GetVoltage(), mChannelB.GetVoltage());
   if (mChannelA.GetVoltage() > 2.5) { //Path A
     if (mChannelB.GetVoltage() > 2.5) { //Red
     //Setup: Inline from C3-D5 (on B1)
       AddCommands(MoveLinear(pDriveTrain, 5*12, kSpd), //Ball 1
       /*TurnDegrees(pDriveTrain, 26.6, kSpd),*/ MoveLinear(pDriveTrain, 2.24*12.0, kSpd), //Ball 2
-      TurnDegrees(pDriveTrain, -98.2, kSpd), MoveLinear(pDriveTrain, 3.16*12.0, kSpd), //Ball 3
-      TurnDegrees(pDriveTrain, 71.6, kSpd), MoveLinear(pDriveTrain, 15*12, kSpd)); //Finish
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, -98.2, kSpd), MoveLinear(pDriveTrain, 3.16*12.0, kSpd), //Ball 3
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, 71.6, kSpd), MoveLinear(pDriveTrain, 15*12, kSpd)); //Finish
     }
     else { //Blue
     //Setup: Parallel to wall at E1
@@ -33,8 +34,8 @@ GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
     if (mChannelB.GetVoltage() > 2.5) { //Red
     //Setup: On (A-side wall)1, inline with B3-D5
       AddCommands(MoveLinear(pDriveTrain, 12.4*12.0, kSpd), //Ball 1-2
-      TurnDegrees(pDriveTrain, -90, kSpd), MoveLinear(pDriveTrain, 7.07*12.0, kSpd), //Ball 3
-      TurnDegrees(pDriveTrain, 45, kSpd), MoveLinear(pDriveTrain, 12.5*12.0, kSpd)); //Finish
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, -90, kSpd), MoveLinear(pDriveTrain, 7.07*12.0, kSpd), //Ball 3
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, 45, kSpd), MoveLinear(pDriveTrain, 12.5*12.0, kSpd)); //Finish
     }
     else { //Blue
     //Setup: Parallel to wall at D1

@@ -7,7 +7,7 @@
 
 #include "commands/auto/Delay.h"
 
-Delay::Delay(double targ): mTarg{targ} {
+Delay::Delay(DriveTrain* pDriveTrain, double targ): mpDriveTrain{pDriveTrain}, mTarg{targ / 1000.0} {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 
@@ -18,7 +18,9 @@ void Delay::Initialize() {
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Delay::Execute() {}
+void Delay::Execute() {
+  mpDriveTrain->stop();
+}
 
 // Called once the command ends or is interrupted.
 void Delay::End(bool interrupted) {
