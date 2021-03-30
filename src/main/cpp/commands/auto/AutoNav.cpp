@@ -16,15 +16,15 @@ AutoNav::AutoNav(DriveTrain* pDriveTrain, int path) {
   printf("Moving\n");
   if (path == 1) { //Start on C1
     AddCommands(MoveLinear(pDriveTrain, 6.5*12.0, kSpd), //At Barrel 1
-    DragTurn(pDriveTrain, 360.0-21, 2.6*12.0, kSpd), MoveLinear(pDriveTrain, 5.5*12.0, kSpd), //At Barrel 2
-    DragTurn(pDriveTrain, -315+10, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 6.0*12.0, kSpd), //At Barrel 3
-    DragTurn(pDriveTrain, -225, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 22.5*12.0, 1.0)); //Finish
+    DragTurn(pDriveTrain, 360.0-19, 2.6*12.0, kSpd), MoveLinear(pDriveTrain, 5.6*12.0, kSpd), //At Barrel 2
+    DragTurn(pDriveTrain, -315-20, 3.0*12.0, kSpd), MoveLinear(pDriveTrain, 6.0*12.0, kSpd), //At Barrel 3
+    DragTurn(pDriveTrain, -225-35, 3.0*12.0, kSpd), MoveLinear(pDriveTrain, 22.5*12.0, 1.0)); //Finish
   }
   else if (path == 2) { //Start on F1
-    AddCommands(DragTurn(pDriveTrain, -45, 2.92*12.0, kSpd), //At D3, 45 degree
-    DragTurn(pDriveTrain, 90, 10.6*12.0, kSpd), //Long curve 1
-    MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, -270, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), //Circle D10
-    DragTurn(pDriveTrain, 90, 10.6*12.0, kSpd), DragTurn(pDriveTrain, -45, 2.92*12.0, kSpd)); //Long curve and return
+    AddCommands(MoveLinear(pDriveTrain, 9, kSpd), DragTurn(pDriveTrain, -50, 2*12.0, kSpd), //At D3, 45 degree
+    DragTurn(pDriveTrain, 145, 4.34*12.0, kSpd), //Long curve 1
+    MoveLinear(pDriveTrain, 0.5*12.0, kSpd), DragTurn(pDriveTrain, -160, 3.0*12.0, kSpd), DragTurn(pDriveTrain, -210, 3.3*12.0, kSpd), MoveLinear(pDriveTrain, 0.1*12.0, kSpd), //Circle D10
+    DragTurn(pDriveTrain, 145, 4.34*12.0, kSpd), DragTurn(pDriveTrain, -90, 2.92*12.0, kSpd)); //Long curve and return
   }
   else if (path == 3) { //Start on C1
     AddCommands(MoveLinear(pDriveTrain, 2.5*12.0, kSpd), DragTurn(pDriveTrain, 90, 2.5*12.0, kSpd), MoveLinear(pDriveTrain, 2.5*12.0, kSpd), //Marker 1

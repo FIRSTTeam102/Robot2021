@@ -13,15 +13,15 @@
 GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer* pIndexer) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
-  AddCommands(LowerArm(pIntake, pIndexer), RaiseArm(pIntake, pIndexer));
+  AddCommands(LowerArm(pIntake, pIndexer), MoveLinear(pDriveTrain, -6, -0.6), RaiseArm(pIntake, pIndexer));
   printf("A: %f, B: %f\n", pDriveTrain->geVoltA(), pDriveTrain->geVoltB());
   if (pDriveTrain->geVoltA() > 2.5) { //Path A
     if (pDriveTrain->geVoltB() > 2.5) { //Red
     //Setup: Inline from C3-D5 (on B1)
       AddCommands(MoveLinear(pDriveTrain, 5*12, kSpd), //Ball 1
       /*TurnDegrees(pDriveTrain, 26.6, kSpd),*/ MoveLinear(pDriveTrain, 2.24*12.0, kSpd), //Ball 2
-      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, -150, kSpd), MoveLinear(pDriveTrain, 8*12.0, kSpd), //Ball 3
-      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, 60, kSpd), MoveLinear(pDriveTrain, 15*12, kSpd)); //Finish
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, -100, kSpd), MoveLinear(pDriveTrain, 8*12.0, kSpd), //Ball 3
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, 80, kSpd), MoveLinear(pDriveTrain, 15*12, kSpd)); //Finish
     }
     else { //Blue
     //Setup: Parallel to wall at E1
@@ -33,9 +33,9 @@ GalacticSearch::GalacticSearch(DriveTrain* pDriveTrain, Intake* pIntake, Indexer
   else { //Path B
     if (pDriveTrain->geVoltB() > 2.5) { //Red
     //Setup: On (A-side wall)1, inline with B3-D5
-      AddCommands(MoveLinear(pDriveTrain, 8.0*12.0, kSpd), //Ball 1-2
-      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, -105, 0.7), MoveLinear(pDriveTrain, 7.07*12.0, kSpd), //Ball 3
-      /*Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, 1, kSpd)*/ DragTurn(pDriveTrain, 90, 30.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd)); //Finish
+      AddCommands(MoveLinear(pDriveTrain, 8.75*12.0, kSpd), //Ball 1-2
+      Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, -150, 0.7), MoveLinear(pDriveTrain, 7.07*12.0, kSpd), //Ball 3
+      /*Delay(pDriveTrain, 500), TurnDegrees(pDriveTrain, 1, kSpd)*/ DragTurn(pDriveTrain, 120, 30.0, kSpd), MoveLinear(pDriveTrain, 7.5*12.0, kSpd)); //Finish
     }
     else { //Blue
     //Setup: Parallel to wall at D1

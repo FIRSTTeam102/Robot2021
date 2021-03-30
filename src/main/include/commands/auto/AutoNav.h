@@ -20,5 +20,5 @@ class AutoNav
  public:
   AutoNav(DriveTrain* pDriveTrain, int path);
  private:
-  double kSpd = 0.5;
+  double kSpd = 0.7;
 };

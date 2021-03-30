@@ -40,5 +40,5 @@ void RaiseArm::End(bool interrupted) {
 
 // RaiseArm IsFinished - Returns true when the command should end.
 bool RaiseArm::IsFinished() { 
-  return (counter > 200 / 20); 
+  return (counter > 300 / 20); 
 }
